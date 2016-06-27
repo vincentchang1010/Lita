@@ -2,8 +2,10 @@ package com.dehats.sqla.model.presentation
 {
 	import flash.data.SQLTableSchema;
 	import flash.events.Event;
-	
-	import mx.controls.Alert;
+
+import mx.collections.ArrayCollection;
+
+import mx.controls.Alert;
 	import mx.events.CloseEvent;
 	
 	[Bindable]
@@ -11,7 +13,7 @@ package com.dehats.sqla.model.presentation
 	{
 		public static const EVENT_TABLE_SELECTED:String= "tableSelected";
 		
-		public var tableRecords:Array
+		public var tableRecords:ArrayCollection;
 		public var selectedRecord:Object;
 		
 		private var mainPM:MainPM;
