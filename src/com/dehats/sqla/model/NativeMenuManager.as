@@ -1,13 +1,15 @@
 package com.dehats.sqla.model
 {
-	import com.dehats.air.DeclarativeMenu;
+	import mx.controls.FlexNativeMenu;
 	import com.dehats.sqla.model.presentation.MainPM;
 	
 	import flash.desktop.NativeApplication;
 	import flash.display.NativeMenuItem;
 	import flash.events.Event;
-	
-	public class NativeMenuManager
+
+import mx.events.FlexNativeMenuEvent;
+
+public class NativeMenuManager
 	{
 		
 		private var pm:MainPM;
@@ -20,50 +22,52 @@ package com.dehats.sqla.model
 		}
 
 		
-		public function createMenu():DeclarativeMenu
+		public function createMenu():FlexNativeMenu
 		{
 			
 			var menuDefinition:XML = 
-			    <root> 
-			        <AppMenu label='Lita'>
-			            <HelpCommand label='Online Help'/>			        			        
-			            <AboutCommand label='About Lita'/>			        
-			            <QuitCommand label='Quit Lita' equiv='q'/>
-			        </AppMenu>
-			    
+			    <root>
+			        <AppMenu label="Lita">
+						<menuitem command="HelpCommand" label='Online Help'/>
+						<menuitem command="AboutCommand" label='About Lita'/>
+						<menuitem command="QuitCommand" label='Quit Lita' equiv='q'/>
+					</AppMenu>
+
 			        <FileMenu label='File'>
-			            <OpenCommand label='Open Database File' equiv='o'/>
-			            <CreateCommand label='Create New Database File' equiv='n'/>		            
+			            <menuitem command="OpenCommand" label='Open Database File' equiv='o'/>
+			            <menuitem command="CreateCommand" label='Create New Database File' equiv='n'/>
 			        </FileMenu>
 
 			        <DBMenu label='Database'>
-			            <ExportStructCommand label='Export Database'/>		        
-			            <CompactCommand label='Compact Database'/>
-			            <EncryptCommand label='Encrypt / Reencrypt Database'/>
+			            <menuitem command="ExportStructCommand" label='Export Database'/>
+			            <menuitem command="CompactCommand" label='Compact Database'/>
+			            <menuitem command="EncryptCommand" label='Encrypt / Reencrypt Database'/>
 			        </DBMenu>
-		
+
 			        <EditMenu label='Edit'>
-			            <CopyCommand label='Copy' equiv='c'/>
-			            <PasteCommand label='Paste' equiv='v'/>		            
-			            <CutCommand label='Cut' equiv='x'/>		            
-			            <SelectAllCommand label='Select All' equiv='a'/>		            			            
+			            <menuitem command="CopyCommand" label='Copy' equiv='c'/>
+			            <menuitem command="PasteCommand" label='Paste' equiv='v'/>
+			            <menuitem command="CutCommand" label='Cut' equiv='x'/>
+			            <menuitem command="SelectAllCommand" label='Select All' equiv='a'/>
 			        </EditMenu>
-			        
+
 			    </root>;
 
-			var root:DeclarativeMenu = new DeclarativeMenu(menuDefinition); 
+			var root:FlexNativeMenu = new FlexNativeMenu();
+			root.showRoot = false;
+			root.labelField = "@label";
+			root.dataProvider = menuDefinition;
 
-			root.addEventListener(Event.SELECT, onMenuSelect);
+			root.addEventListener(FlexNativeMenuEvent.ITEM_CLICK, onMenuSelect);
 			
 			return root;
 		}
 		
-		private function onMenuSelect(pEvt:Event):void
+		private function onMenuSelect(pEvt:FlexNativeMenuEvent):void
 		{	
 						
-			var item:NativeMenuItem = pEvt.target as NativeMenuItem;
-			
-			switch (item.name)
+			var item:NativeMenuItem = pEvt.nativeMenuItem;
+			switch (item.data.@command[0].toString())
 			{
 				
 

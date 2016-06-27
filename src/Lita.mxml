@@ -41,7 +41,9 @@
 				
 				nativeApplication.addEventListener(Event.EXITING, onExiting);
 				
-				nativeApplication.menu = nativeWindow.menu = mainPM.createNativeMenu();
+//				nativeApplication.menu = nativeWindow.menu = mainPM.createNativeMenu();
+				this.menu = mainPM.createNativeMenu();
+				this.invalidateProperties();
 				
 				mainPM.initialize( this);
 				

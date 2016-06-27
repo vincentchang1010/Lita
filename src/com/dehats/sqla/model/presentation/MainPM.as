@@ -1,29 +1,29 @@
 package com.dehats.sqla.model.presentation
 {
-	import air.update.ApplicationUpdaterUI;
-	import air.update.events.UpdateEvent;
-	
-	import com.dehats.air.sqlite.SQLiteErrorEvent;
-	import com.dehats.sqla.events.EncryptionErrorEvent;
-	import com.dehats.sqla.model.FileManager;
-	import com.dehats.sqla.model.MainModel;
-	import com.dehats.sqla.model.NativeMenuManager;
-	
-	import flash.data.SQLColumnSchema;
-	import flash.data.SQLIndexSchema;
-	import flash.data.SQLResult;
-	import flash.data.SQLTableSchema;
-	import flash.desktop.NativeApplication;
-	import flash.display.NativeMenu;
-	import flash.events.Event;
-	import flash.events.InvokeEvent;
-	import flash.filesystem.File;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
-	
-	import mx.controls.Alert;
-	
-	[Bindable]
+import air.update.ApplicationUpdaterUI;
+import air.update.events.UpdateEvent;
+
+import com.dehats.air.sqlite.SQLiteErrorEvent;
+import com.dehats.sqla.events.EncryptionErrorEvent;
+import com.dehats.sqla.model.FileManager;
+import com.dehats.sqla.model.MainModel;
+import com.dehats.sqla.model.NativeMenuManager;
+
+import flash.data.SQLColumnSchema;
+import flash.data.SQLIndexSchema;
+import flash.data.SQLResult;
+import flash.data.SQLTableSchema;
+import flash.desktop.NativeApplication;
+import flash.events.Event;
+import flash.events.InvokeEvent;
+import flash.filesystem.File;
+import flash.net.URLRequest;
+import flash.net.navigateToURL;
+
+import mx.controls.Alert;
+import mx.controls.FlexNativeMenu;
+
+[Bindable]
 	public class MainPM extends AbstractPM
 	{
 
@@ -94,7 +94,7 @@ package com.dehats.sqla.model.presentation
 			
 		}	
 				
-		public function createNativeMenu():NativeMenu
+		public function createNativeMenu():FlexNativeMenu
 		{
 			return nativeMenuMgr.createMenu();
 		}
